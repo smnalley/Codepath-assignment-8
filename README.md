@@ -11,6 +11,9 @@ However, we send this failed request to the repeater in Burp.
 There, we inject a session ID from a user logged in in another browser.
 The resulting response gets us into the staff menu.
 
+
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_1.gif" width="800">
+
 Exploit 2:
 
 
