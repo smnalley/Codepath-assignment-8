@@ -40,6 +40,8 @@ The green site makes it easy for hackers to tell when a hacker has found a valid
 If the username is invalid, the page will return a message saying "Login was unsuccessful."
 If it is valid, however, it will instead say <b>"Login was unsuccessful</b> in bold.
 
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_4.gif" width="800">
+
 Red site:
 
 Exploit 1: IDOR
