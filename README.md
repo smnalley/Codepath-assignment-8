@@ -1,7 +1,18 @@
 # Codepath-assignment-8
 
 Blue site:
-Exploit 1: Session Hijacking
+
+Exploit 1: SQL injection
+The blue site uses an SQL query to retrive employee profile information. 
+This query is vulnerable to SQL injection.
+We show this by injecting a SLEEP() command into the window.
+Then we demonstrate that when the sleep command is not used,
+the window loads far faster, illustrating that the command took effect earlier.
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_2.gif" width="800">
+
+
+
+Exploit 2: Session Hijacking
 The blue site uses a single PHP session id parameter to verify the user's session. 
 If a hacker has that session ID, they can inject it into the parameter 
 and get into the site's staff section even if they didn't log on with a user name and password.
@@ -10,12 +21,40 @@ This fails, yielding a redirect to login.
 However, we send this failed request to the repeater in Burp.
 There, we inject a session ID from a user logged in in another browser.
 The resulting response gets us into the staff menu.
-
-
 <img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_1.gif" width="800">
 
-Exploit 2:
 
+Green site:
+Exploit 1: Cross-site scripting
+The comments box on the green site does not screen for cross-site scripting. 
+A basic alert script works with no adjustments necessary.
+After login, if a user goes to the feedback page, any scripts attached to any
+comments logged to the site will trigger. 
+Several other students had uploaded such comments at the time of this exploit;
+we proceed through them until we reach the one unique to our script.
+
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_3.gif" width="800">
+
+Exploit 2: User enumeration
+The green site makes it easy for hackers to tell when a hacker has found a valid username through enumeration.
+If the username is invalid, the page will return a message saying "Login was unsuccessful."
+If it is valid, however, it will instead say <b>"Login was unsuccessful</b> in bold.
+
+Red site:
+
+Exploit 1: IDOR
+The web address for any employee's information on the site contains a parameter for the employee id by number.
+Some ID numbers, when injected into the parameter, yield pages that general users are not meant to see.
+
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_5.gif" width="800">
+
+Exploit 2: CSRF
+The site does not validate cross-site request forgery tokens, 
+which makes it easy to create a page for a fake employee that blends in with the others.
+Here, we've mirrored an employee page on our own hard drive, edited it, 
+and copied it into the address bar.
+
+<img src="https://github.com/smnalley/Codepath-Assignment-8/blob/master/Week8_6.gif" width="800">
 
 
 Questions:
@@ -51,7 +90,7 @@ A stored XSS attack requires patience because it could be stored for months befo
 Because of this, what important ingredient would an attacker most likely include in a stored XSS attack script?
 
 Code that adjusts any parameters that rely on a timer, i.e. if there were any CSRF components those would need
-to be adjusted
+to be adjusted.
 
 Imagine that one of your classmates is an authorized admin for the site's CMS and you are not. 
 How would you get them to visit the self-submitting, hidden form page you created in Objective #5 (CSRF)?
